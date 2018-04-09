@@ -16,7 +16,7 @@ int main()
 int allocateMap()
 {   
 
-    rangeIntArray(pid,MIN_PID,MAX_PID);
+    pid=rangeIntArray(pid,MIN_PID,MAX_PID);
     //Sets range for pid range
     //returns -1 if pid is unavailable
    if(pid == NULL)
@@ -27,7 +27,7 @@ int allocateMap()
    {
    pid[i] = 0;
    } 
-   return 1;
+   return pid;
 }
      
 int allocatePID()
