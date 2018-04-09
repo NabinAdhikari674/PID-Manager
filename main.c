@@ -14,15 +14,17 @@ int map[4700];
 int main()
 {
     printf("\n\n\t#########  PROCESS ID MANAGER  #########\n\n");
-   int i;
+   int i,k;
     int j;
+    printf("\t\tEnter The Number of threads you want To create [Stay Below 100 for Visual Simplicity] : ");
+    scanf("%d",&k);
    srand(time(0));
    allocateMap();
    pthread_t t[100];
     printf("## The threads are being created..\n\n");
-    for(i=0;i<100;i++)
+    for(i=0;i<k;i++)
         pthread_create(&t[i],NULL,&thread,NULL);
-    for(j=0;j<100;j++)
+    for(j=0;j<k;j++)
         (pthread_join(t[j],NULL));
    printf("\n\n#The Total threads created are : \n");
    printf("%d\n",z);
