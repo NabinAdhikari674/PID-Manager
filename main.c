@@ -4,17 +4,17 @@
 #include<time.h>
 const int MIN_PID = 30;
 const int MAX_PID = 35;
-int pid[4700];
-int map[4700];
 int allocateMap();
 int allocatePID();
 int releasePID();
 void *thread();
 int z=0;
+int pid[4700];
+int map[4700];
 int main()
 {
-   srand(time(0));
    int i;
+   srand(time(0));
    allocateMap();
    pthread_t t[100];
     printf("The threads are being created..\n\n");
