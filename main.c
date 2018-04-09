@@ -79,7 +79,7 @@ int releasePID(int pidNum)
    int newPid = pidNum - MIN_PID;
      
    if(map[pidNum] == 0){
-   printf("\n!! PID %d is already released !!\n",pidNum);
+   printf("\n!! PID %d is already released !!\n\n",pidNum);
    return 1;
    }
      
