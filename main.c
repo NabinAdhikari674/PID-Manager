@@ -1,33 +1,32 @@
 #include<stdio.h>
-static int MIN_PID = 300;
-static int MAX_PID = 5000;
-static int pid[];
+#include<conio.h>
+const int MIN_PID = 300;
+const int MAX_PID = 5000;
+int pid[4700];
 
 int main()
 {  int z;
-   z=allocateMap();
-   printf("Allocate PID : %d",allocatePID());
-   printf("Allocate PID : %d",allocatePID());
-   printf("Releasing PID : 300");
+   allocateMap();
+   printf("Allocate PID : %d\n",allocatePID());
+   printf("Allocate PID : %d\n",allocatePID());
+   printf("Releasing PID : 300\n");
    releasPID(300);
-   printf("Allocate PID : %d",allocatePID());
+   printf("Allocate PID : %d\n",allocatePID());
+   getch();
 }
     
 int allocateMap()
 {   
-
-    pid=rangeIntArray(pid,MIN_PID,MAX_PID);
-    //Sets range for pid range
-    //returns -1 if pid is unavailable
+   int i;
    if(pid == NULL)
        return -1; 
    //sets all pid to 0, which indicates the process if of i is available
-   int i;
+   
    for(i=0; i<(MAX_PID-MIN_PID); i++)
    {
    pid[i] = 0;
    } 
-   return pid;
+   return 1;
 }
      
 int allocatePID()
