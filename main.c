@@ -1,18 +1,18 @@
 #include<stdio.h>
-#include<conio.h>
 const int MIN_PID = 300;
 const int MAX_PID = 5000;
 int pid[4700];
-
+int allocateMap();
+int allocatePID();
+int releasePID();
 int main()
 {  int z;
    allocateMap();
    printf("Allocate PID : %d\n",allocatePID());
    printf("Allocate PID : %d\n",allocatePID());
    printf("Releasing PID : 300\n");
-   releasPID(300);
+   releasePID(300);
    printf("Allocate PID : %d\n",allocatePID());
-   getch();
 }
     
 int allocateMap()
@@ -58,12 +58,12 @@ int allocatePID()
    return pidNum;
 }
      
-int releasPID(int pidNum)
+int releasePID(int pidNum)
 {     
    if(pid == NULL)
    {
    printf("PID Manager is not initialized ");
-   return;
+   return 0;
    }
      
    if(pidNum < MIN_PID || pidNum > MAX_PID){
@@ -74,7 +74,7 @@ int releasPID(int pidNum)
      
    if(pid[newPid] == 0){
    printf("PID %d is already released ",newPid);
-   return;
+   return 1;
    }
      
    pid[newPid]=0;
