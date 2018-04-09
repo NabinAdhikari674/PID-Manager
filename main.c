@@ -2,8 +2,8 @@
 #include<stdlib.h>
 #include<pthread.h>
 #include<time.h>
-const int MIN_PID = 30;
-const int MAX_PID = 35;
+const int MIN_PID = 300;
+const int MAX_PID = 5000;
 int allocateMap();
 int allocatePID();
 int releasePID();
@@ -13,17 +13,18 @@ int pid[4700];
 int map[4700];
 int main()
 {
+    printf("\n\n\t#########  PROCESS ID MANAGER  #########\n\n");
    int i;
+    int j;
    srand(time(0));
    allocateMap();
    pthread_t t[100];
-    printf("The threads are being created..\n\n");
-    for(i=0;i<5;i++) 
-    {
+    printf("## The threads are being created..\n\n");
+    for(i=0;i<100;i++)
         pthread_create(&t[i],NULL,&thread,NULL);
-        pthread_join(t[i],NULL);
-    }
-   printf("\n\nThe threads are created\n");
+    for(j=0;j<100;j++)
+        (pthread_join(t[j],NULL));
+   printf("\n\n#The Total threads created are : \n");
    printf("%d\n",z);
 }
     
@@ -78,7 +79,7 @@ int releasePID(int pidNum)
    int newPid = pidNum - MIN_PID;
      
    if(map[pidNum] == 0){
-   printf("PID %d is already released ",pidNum);
+   printf("\n!! PID %d is already released !!\n",pidNum);
    return 1;
    }
      
@@ -87,12 +88,11 @@ int releasePID(int pidNum)
 void *thread()
 {
    z=z+1;
-   printf("%d\n",z);
    int t;
    t=allocatePID();
-   printf("Allocate PID : %d\n",t);
-    sleep(1);
-   printf("Releasing PID : %d\n",t);
+   printf("%d Allocate PID : %d\n",z,t);
+   pthread_yield(rand()%(10-5)+5);
+   printf("\n## Releasing PID : %d ##\n\n",t);
    releasePID(t);
     
 }
