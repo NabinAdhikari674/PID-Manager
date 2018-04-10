@@ -21,7 +21,7 @@ int main()
    srand(time(0));
    allocateMap();
    pthread_t t[100];
-    printf("\n\t## The threads are being created..\n\n");
+    printf("\n\n\t## The threads are being created..\n\n");
     for(i=0;i<k;i++)
         pthread_create(&t[i],NULL,&thread,NULL);
     for(j=0;j<k;j++)
