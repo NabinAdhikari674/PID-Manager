@@ -9,12 +9,13 @@ int allocatePID();
 int releasePID();
 void *thread();
 int z=0;
+int k;
 int pid[4700];
 int map[4700];
 int main()
 {
     printf("\n\n\t#########  PROCESS ID MANAGER  #########\n\n");
-   int i,k;
+   int i;
     int j;
     printf("\t\tEnter The Number of threads you want To create [Stay Below 100 for Visual Simplicity] : ");
     scanf("%d",&k);
@@ -85,7 +86,7 @@ void *thread()
    int t;
    t=allocatePID();
    printf("%d Allocate PID : %d\n",z,t);
-   pthread_yield(rand()%(10-5)+5);               //sleep(rand()) with range can also be used
+   pthread_yield(rand()%(k-5)+5);               //sleep(rand()) with range can also be used
    printf("\n## Releasing PID : %d ##\n\n",t);
    releasePID(t);
     
