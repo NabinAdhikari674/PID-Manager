@@ -2,8 +2,8 @@
 #include<stdlib.h>
 #include<pthread.h>
 #include<time.h>
-const int MIN_PID = 300;
-const int MAX_PID = 5000;
+const int MIN_PID = 100;
+const int MAX_PID = 1000;
 int allocateMap();
 int allocatePID();
 int releasePID();
@@ -33,8 +33,6 @@ int main()
 int allocateMap()
 {   
    int i;
-   if(pid == NULL)
-       return -1; 
    for(i=0; i<(MAX_PID-MIN_PID); i++)
    {
    pid[i]=0;
@@ -74,18 +72,12 @@ int releasePID(int pidNum)
    return 0;
    }
      
-   if(pidNum < MIN_PID || pidNum > MAX_PID){
-   printf("Given PID is out or Range");
-   }
-     
-   int newPid = pidNum - MIN_PID;
-     
    if(map[pidNum] == 0){
    printf("\n!! PID %d is already released !!\n\n",pidNum);
    return 1;
    }
      
-   map[newPid]=0;
+   map[pidNum]=0;
 }
 void *thread()
 {
@@ -93,7 +85,7 @@ void *thread()
    int t;
    t=allocatePID();
    printf("%d Allocate PID : %d\n",z,t);
-   pthread_yield(rand()%(10-5)+5);
+   pthread_yield(rand()%(10-5)+5);               //sleep(rand()) with range can also be used
    printf("\n## Releasing PID : %d ##\n\n",t);
    releasePID(t);
     
